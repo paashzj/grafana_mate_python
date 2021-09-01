@@ -4,7 +4,7 @@ LABEL maintainer="shoothzj@gmail.com"
 
 RUN pip3 install flask
 
-COPY mate /opt/sh/grafana/mate
+COPY . /opt/sh/grafana/mate
 
 WORKDIR /opt/sh/grafana
 

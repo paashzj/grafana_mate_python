@@ -1,5 +1,6 @@
 import os
 
+
 class PathConst:
     home_path = os.getenv("GRAFANA_HOME")
     mate_path = home_path + "/mate"
