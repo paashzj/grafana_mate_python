@@ -1,6 +1,10 @@
 .idea
 .vscode
 .DS_Store
-venv
 .github
 .gitignore
+
+# python
+venv
+**/*.pyc
+**/__pycache__
