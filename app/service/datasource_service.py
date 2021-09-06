@@ -3,19 +3,30 @@ import json
 from urllib import request
 
 from app.const.constant import Const
+from app.service.grafana_req_util import GrafanaReqUtil
 
 
-class DatasourceService:
+class DataSourceService:
+    def init_datasource(self):
+        self.init_prometheus()
+        self.init_elasticsearch()
+
     @staticmethod
-    def init_password():
-        print("begin to init datasource")
-        req = request.Request("http://localhost:3000/api/datasources", method='POST')
-        credentials = ('%s:%s' % (Const.username, Const.password))
-        encoded_credentials = base64.b64encode(credentials.encode('ascii'))
-        req.add_header('Authorization', 'Basic %s' % encoded_credentials.decode("ascii"))
-        req.add_header('Content-Type', 'application/json')
+    def init_prometheus():
+        print("begin to init prometheus")
         dumps = json.dumps(
-            {"name": "Prometheus", "type": "prometheus", "url": "http://localhost:9090", "access": "proxy"})
+            {"name": "Prometheus", "type": "prometheus", "url": "http://" + Const.prom_host + ":9090",
+             "access": "proxy"})
         body = dumps.encode(encoding='utf-8')
-        f = request.urlopen(req, body)
+        f = request.urlopen(GrafanaReqUtil.new_datasource_post_req(), body)
+        print(f.status)
+
+    @staticmethod
+    def init_elasticsearch():
+        print("begin to init elasticsearch")
+        dumps = json.dumps(
+            {"name": "Elasticsearch", "type": "elasticsearch", "url": "http://" + Const.es_host + ":9200",
+             "access": "proxy"})
+        body = dumps.encode(encoding='utf-8')
+        f = request.urlopen(GrafanaReqUtil.new_datasource_post_req(), body)
         print(f.status)
