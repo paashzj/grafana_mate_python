@@ -14,6 +14,7 @@ class DashboardService:
         print("init dashboard")
         self.init_prom_dashboard()
         self.init_es_dashboard()
+        self.init_influx_dashboard()
 
     def init_prom_dashboard(self):
         print("init prom dashboard")
@@ -29,6 +30,10 @@ class DashboardService:
     def init_es_dashboard(self):
         print("init es dashboard")
         folder_id = self.create_folder("Elasticsearch")
+
+    def init_influx_dashboard(self):
+        print("init influx dashboard")
+        folder_id = self.create_folder("Influx")
 
     @staticmethod
     def create_folder(title):
