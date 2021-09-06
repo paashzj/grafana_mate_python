@@ -11,6 +11,7 @@ class DataSourceService:
         self.init_prometheus()
         self.init_elasticsearch()
         self.init_influxdb()
+        self.init_influxdb2()
 
     @staticmethod
     def init_prometheus():
@@ -38,6 +39,16 @@ class DataSourceService:
         dumps = json.dumps(
             {"name": "InfluxDB", "type": "influxdb", "url": "http://" + Const.influx_host + ":8086",
              "access": "proxy", "user": "admin"})
+        body = dumps.encode(encoding='utf-8')
+        f = request.urlopen(GrafanaReqUtil.new_datasource_post_req(), body)
+        print(f.status)
+
+    @staticmethod
+    def init_influxdb2():
+        print("begin to init influx")
+        dumps = json.dumps(
+            {"name": "InfluxDB2", "type": "influxdb", "url": "http://" + Const.influx_host + ":8086",
+             "access": "proxy", "jsonData": {"defaultBucket": "telegraf", "version": "Flux"}})
         body = dumps.encode(encoding='utf-8')
         f = request.urlopen(GrafanaReqUtil.new_datasource_post_req(), body)
         print(f.status)
