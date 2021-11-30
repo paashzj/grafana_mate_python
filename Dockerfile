@@ -2,7 +2,9 @@ FROM ttbb/grafana:nake
 
 LABEL maintainer="shoothzj@gmail.com"
 
-RUN pip3 install flask
+RUN dnf install -yq pip && \
+    dnf clean all
+RUN pip install flask
 
 COPY . /opt/sh/grafana/mate
 
