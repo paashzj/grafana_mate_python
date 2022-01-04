@@ -10,4 +10,4 @@ COPY . /opt/sh/grafana/mate
 
 WORKDIR /opt/sh/grafana
 
-CMD ["/usr/local/bin/dumb-init", "bash", "-vx", "/opt/sh/grafana/mate/scripts/start.sh"]
+CMD ["/usr/bin/dumb-init", "bash", "-vx", "/opt/sh/grafana/mate/scripts/start.sh"]
