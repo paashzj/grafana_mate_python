@@ -20,13 +20,13 @@ class DashboardService:
     def init_prom_dashboard(self):
         print("init prom dashboard")
         folder_id = self.create_folder("Prometheus")
-        self.import_dashboard("Prometheus", folder_id, "zookeeper-by-prometheus_rev4.json")
-        self.import_dashboard("Prometheus", folder_id, "bookkeeper-by-prometheus.json")
-        self.import_dashboard("Prometheus", folder_id, "pulsaroverall-by-prometheus.json")
-        self.import_dashboard("Prometheus", folder_id, "pulsarproxy-by-prometheus.json")
-        self.import_dashboard("Prometheus", folder_id, "pulsartopics-by-prometheus.json")
-        self.import_dashboard("Prometheus", folder_id, "pulsar-jvm-by-prometheus.json")
-        self.import_dashboard("Prometheus", folder_id, "mysql_rev1.json")
+        self.import_dashboard("Prometheus", folder_id, "prometheus", "zookeeper-by-prometheus_rev4.json")
+        self.import_dashboard("Prometheus", folder_id, "prometheus", "bookkeeper-by-prometheus.json")
+        self.import_dashboard("Prometheus", folder_id, "prometheus", "pulsaroverall-by-prometheus.json")
+        self.import_dashboard("Prometheus", folder_id, "prometheus", "pulsarproxy-by-prometheus.json")
+        self.import_dashboard("Prometheus", folder_id, "prometheus", "pulsartopics-by-prometheus.json")
+        self.import_dashboard("Prometheus", folder_id, "prometheus", "pulsar-jvm-by-prometheus.json")
+        self.import_dashboard("Prometheus", folder_id, "prometheus", "mysql_rev1.json")
 
     def init_es_dashboard(self):
         print("init es dashboard")
@@ -51,8 +51,8 @@ class DashboardService:
         return json_data['id']
 
     @staticmethod
-    def import_dashboard(title, folder_id, dashboard):
-        with open(PathConst.grafana_dashboard_dir + "/" + dashboard) as file:
+    def import_dashboard(title, folder_id, dir, dashboard):
+        with open(PathConst.grafana_dashboard_dir + "/" + dir + "/" + dashboard) as file:
             data = file.read()
         dumps = json.dumps({"uid": title, "folderId": folder_id, "dashboard": json.loads(data)})
         body = dumps.encode(encoding='utf-8')
