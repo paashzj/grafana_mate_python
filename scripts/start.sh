@@ -1,5 +1,5 @@
 #!/bin/bash
 
-cd $GRAFANA_HOME/mate
-python3 $GRAFANA_HOME/mate/app/main.py >>$GRAFANA_HOME/grafana_mate.stdout.log 2>>$GRAFANA_HOME/grafana_mate.stderr.log
+DIR="$( cd "$( dirname "$0"  )" && pwd  )"
+bash -x $DIR/start-daemon.sh
 tail -f /dev/null
