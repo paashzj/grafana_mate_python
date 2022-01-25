@@ -1,9 +1,6 @@
-import base64
 import json
-import urllib
 from urllib import request
 
-from app.const.constant import Const
 from app.const.path import PathConst
 from app.service.grafana_req_util import GrafanaReqUtil
 
@@ -28,6 +25,7 @@ class DashboardService:
         self.import_dashboard("Prometheus", folder_id, "prometheus", "pulsar-jvm-by-prometheus.json")
         self.import_dashboard("Prometheus", folder_id, "prometheus", "mysql_rev1.json")
         self.import_dashboard("Prometheus", folder_id, "prometheus", "coredns_rev2.json")
+        self.import_dashboard("Prometheus", folder_id, "prometheus", "jvm-micrometer_rev9.json")
 
     def init_es_dashboard(self):
         print("init es dashboard")
