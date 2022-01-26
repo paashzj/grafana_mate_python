@@ -17,16 +17,25 @@
 # under the License.
 #
 
-FROM ttbb/grafana:nake
+name: "license check"
 
-LABEL maintainer="shoothzj@gmail.com"
+on:
+  push:
+    branches:
+      - main
 
-RUN dnf install -yq pip && \
-    dnf clean all
-RUN pip install flask
+jobs:
+  license-check:
+    name: License Check
+    runs-on: ubuntu-latest
 
-COPY . /opt/sh/grafana/mate
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-WORKDIR /opt/sh/grafana
-
-CMD ["/usr/bin/dumb-init", "bash", "-vx", "/opt/sh/grafana/mate/scripts/start.sh"]
+      - name: Check license header
+        uses: apache/skywalking-eyes@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          config: .licenserc.yaml
