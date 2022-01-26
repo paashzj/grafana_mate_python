@@ -17,13 +17,26 @@
 # under the License.
 #
 
-from app.const.constant import Const
 
+name: "license check"
 
-class UrlConst:
-    api_prefix = "http://" + Const.grafana_host + ":" + Const.grafana_port + "/api"
-    password_url = api_prefix + "/user/password"
-    data_sources_url = api_prefix + "/datasources"
-    folders_url = api_prefix + "/folders"
-    databoards_url = api_prefix + "/dashboards"
-    databoards_db_url = databoards_url + "/db"
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  license-check:
+    name: License Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Check license header
+        uses: apache/skywalking-eyes@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          config: .licenserc.yaml
