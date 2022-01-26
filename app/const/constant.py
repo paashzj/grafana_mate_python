@@ -16,6 +16,7 @@
 # specific language governing permissions and limitations
 # under the License.
 #
+
 import os
 
 var_grafana_host = os.getenv("GRAFANA_HOST")

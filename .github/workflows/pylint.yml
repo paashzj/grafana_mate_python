@@ -17,13 +17,27 @@
 # under the License.
 #
 
-from app.const.constant import Const
 
+name: Pylint
 
-class UrlConst:
-    api_prefix = "http://" + Const.grafana_host + ":" + Const.grafana_port + "/api"
-    password_url = api_prefix + "/user/password"
-    data_sources_url = api_prefix + "/datasources"
-    folders_url = api_prefix + "/folders"
-    databoards_url = api_prefix + "/dashboards"
-    databoards_db_url = databoards_url + "/db"
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: set up python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+          architecture: 'x64'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pylint
+      - name: Analysing the code with pylint
+        run: pylint --rcfile=pylint.rc **/*.py

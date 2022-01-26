@@ -16,6 +16,7 @@
 # specific language governing permissions and limitations
 # under the License.
 #
+
 import json
 from urllib import request
 
@@ -69,8 +70,8 @@ class DashboardService:
         return json_data['id']
 
     @staticmethod
-    def import_dashboard(title, folder_id, dir, dashboard):
-        with open(PathConst.grafana_dashboard_dir + "/" + dir + "/" + dashboard) as file:
+    def import_dashboard(title, folder_id, directory, dashboard):
+        with open(PathConst.grafana_dashboard_dir + "/" + directory + "/" + dashboard) as file:
             data = file.read()
         dumps = json.dumps({"uid": title, "folderId": folder_id, "dashboard": json.loads(data)})
         body = dumps.encode(encoding='utf-8')
