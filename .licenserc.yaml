@@ -26,3 +26,6 @@ header:
     - '**/*.md'
     - 'LICENSE'
     - '.gitignore'
+    - 'pylint.rc'
+    - '**/*.json'
+    - '**/*.ini'
