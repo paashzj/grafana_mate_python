@@ -82,7 +82,7 @@
             "tableColumn": "",
             "targets": [
                 {
-                    "expr": "pulsar_function_last_invocation{cluster=~\"$cluster\", namespace=~\"$namespace\", fqfn=~\"$fqfn\"}",
+                    "expr": "pulsar_sink_last_invocation{cluster=~\"$cluster\", namespace=~\"$namespace\", fqfn=~\"$fqfn\"}",
                     "interval": "",
                     "legendFormat": "{{ fqfn }}",
                     "refId": "A"
@@ -91,7 +91,7 @@
             "thresholds": "",
             "timeFrom": null,
             "timeShift": null,
-            "title": "Function Last Invocation",
+            "title": "Sink Last Invocation",
             "transparent": true,
             "type": "singlestat",
             "valueFontSize": "80%",
@@ -145,14 +145,14 @@
             "steppedLine": false,
             "targets": [
                 {
-                    "expr": "irate(pulsar_function_system_exceptions_total{cluster=~\"$cluster\", namespace=~\"$namespace\", fqfn=~\"$fqfn\"}[5m])",
+                    "expr": "irate(pulsar_sink_system_exceptions_total{cluster=~\"$cluster\", namespace=~\"$namespace\", fqfn=~\"$fqfn\"}[5m])",
                     "hide": false,
                     "interval": "",
                     "legendFormat": "system exceptions",
                     "refId": "A"
                 },
                 {
-                    "expr": "irate(pulsar_function_user_exceptions_total{cluster=~\"$cluster\", namespace=~\"$namespace\", fqfn=~\"$fqfn\"}[5m])",
+                    "expr": "irate(pulsar_sink_user_exceptions_total{cluster=~\"$cluster\", namespace=~\"$namespace\", fqfn=~\"$fqfn\"}[5m])",
                     "hide": false,
                     "interval": "",
                     "legendFormat": "user exceptions",
@@ -163,7 +163,7 @@
             "timeFrom": null,
             "timeRegions": [],
             "timeShift": null,
-            "title": "Functions Exceptions Num",
+            "title": "Sinks Exceptions Num",
             "tooltip": {
                 "shared": true,
                 "sort": 0,
@@ -244,7 +244,7 @@
             "steppedLine": false,
             "targets": [
                 {
-                    "expr": "pulsar_function_process_latency_ms{cluster=~\"$cluster\", namespace=~\"$namespace\", fqfn=~\"$fqfn\"}",
+                    "expr": "pulsar_sink_process_latency_ms{cluster=~\"$cluster\", namespace=~\"$namespace\", fqfn=~\"$fqfn\"}",
                     "hide": false,
                     "interval": "",
                     "legendFormat": "{{ quantile }}",
@@ -255,7 +255,7 @@
             "timeFrom": null,
             "timeRegions": [],
             "timeShift": null,
-            "title": "Function process latency",
+            "title": "Sink process latency",
             "tooltip": {
                 "shared": true,
                 "sort": 0,
@@ -334,7 +334,7 @@
             "steppedLine": false,
             "targets": [
                 {
-                    "expr": "irate(pulsar_function_received_total{cluster=~\"$cluster\", namespace=~\"$namespace\", fqfn=~\"$fqfn\"} [30s])",
+                    "expr": "irate(pulsar_sink_received_total{cluster=~\"$cluster\", namespace=~\"$namespace\", fqfn=~\"$fqfn\"} [30s])",
                     "interval": "",
                     "legendFormat": "receive message numbers",
                     "refId": "A"
@@ -423,7 +423,7 @@
             "steppedLine": false,
             "targets": [
                 {
-                    "expr": "irate(pulsar_function_processed_successfully_total{cluster=~\"$cluster\", namespace=~\"$namespace\", fqfn=~\"$fqfn\"} [30s])",
+                    "expr": "irate(pulsar_sink_processed_successfully_total{cluster=~\"$cluster\", namespace=~\"$namespace\", fqfn=~\"$fqfn\"} [30s])",
                     "interval": "",
                     "legendFormat": "{{ cluster }}",
                     "refId": "A"
@@ -567,8 +567,8 @@
         ]
     },
     "timezone": "",
-    "title": "Pulsar Functions",
-    "uid": "EqGNGQ6Wk",
+    "title": "Pulsar Sinks",
+    "uid": "RaRYXQ6Wk",
     "variables": {
         "list": []
     },
